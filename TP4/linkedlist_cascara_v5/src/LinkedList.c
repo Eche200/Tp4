@@ -78,7 +78,6 @@ Node* test_getNode(LinkedList* this, int nodeIndex)
 {
 
 
-
     return getNode(this, nodeIndex);
 }
 
@@ -95,47 +94,26 @@ Node* test_getNode(LinkedList* this, int nodeIndex)
 static int addNode(LinkedList* this, int nodeIndex,void* pElement)
 {
     int returnAux = -1;
-    Node* pNode=NULL;
-    Node* auxNode=NULL;
-
-    if(this != NULL && nodeIndex >=0 && nodeIndex < ll_len(this)&& pElement != NULL)
+    Node* pNewNode = malloc(sizeof(Node));
+    Node* auxNodeAnterior = NULL;
+    Node* auxNodeSiguiente = NULL;
+    if(this != NULL && nodeIndex >= 0 && nodeIndex <= ll_len(this))
     {
-        if(nodeIndex == 0 && this->size == 0  && pNode -> pNextNode == NULL)//si quiero agregar en el 0 y no hay elementos agregados
+        if(nodeIndex == 0)
         {
-
-            auxNode= (Node*)malloc(sizeof(Node));
-
-            auxNode->pElement=pElement;
-            //NODO CREADO
-
-            this->size++;
-            this->pFirstNode = auxNode->pElement;
-
-
-
-
-
-
-
-
-
-
-        }else if(pNode -> pNextNode != NULL &&  nodeIndex > 0 && this->pFirstNode != NULL)// esto agrega   entre medio de 2  nodos que no sean el primero
-        {
-
-
-
-        }else if(nodeIndex >0 && pNode->pNextNode == NULL  && this->pFirstNode != NULL)//esto agrega un nodo al ultimo lugar
-        {
-
-
-
-
-        }else if(nodeIndex == 0 && this->size != 0 && pNode -> pNextNode == NULL )// si quiero agregar en el 0, pero hay cosas , debo mover todo 1 lugar
-        {
-
-
+            pNewNode->pNextNode = this->pFirstNode;
+            this->pFirstNode = pNewNode;
         }
+        else if(nodeIndex > 0 && nodeIndex <= ll_len(this))
+        {
+            auxNodeAnterior = getNode(this, nodeIndex-1);
+            auxNodeSiguiente = getNode(this, nodeIndex);
+            auxNodeAnterior->pNextNode = pNewNode;
+            pNewNode->pNextNode = auxNodeSiguiente;
+        }
+        this->size += 1;
+        pNewNode->pElement = pElement;
+        returnAux = 0;
     }
     return returnAux;
 }
@@ -161,12 +139,16 @@ int test_addNode(LinkedList* this, int nodeIndex,void* pElement)
  * \param pElement void* Puntero al elemento a ser agregado
  * \return int Retorna  (-1) Error: si el puntero a la lista es NULL
                         ( 0) Si funciono correctamente
- *
  */
 int ll_add(LinkedList* this, void* pElement)
 {
     int returnAux = -1;
-
+    if(this != NULL )
+    {
+        //this->size++;
+        addNode(this, ll_len(this), pElement);
+        returnAux = 0;
+    }
     return returnAux;
 }
 
@@ -181,6 +163,12 @@ int ll_add(LinkedList* this, void* pElement)
 void* ll_get(LinkedList* this, int index)
 {
     void* returnAux = NULL;
+    Node* auxNode = NULL;
+    if(this !=NULL && index >=0 && index <= ll_len(this))
+    {
+        auxNode = getNode(this,index);
+        returnAux = auxNode->pElement;
+    }
 
     return returnAux;
 }
