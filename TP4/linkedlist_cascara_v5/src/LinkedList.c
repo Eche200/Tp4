@@ -533,13 +533,16 @@ LinkedList* ll_filter (LinkedList* this , int(*pFunction)(void* pElemento))
 {
     LinkedList* nuevaLinkedList = NULL;
     ll_startIter(this);
+    int
     if(this != NULL && pFunction !=NULL)
     {
         do
         {
+
+            if( !pFunction(nodoGlobal->pElement) && )
             if(!pFunction(nodoGlobal->pElement))
             {
-                ll_add(nuevaLinkedList , nodoGlobal);
+                ll_add(nuevaLinkedList , nodoGlobal->pElement);
             }
             ll_getNext();
         }while(nodoGlobal->pNextNode != NULL);
@@ -557,9 +560,11 @@ void ll_startIter( LinkedList* this)
 
 }
 
-void ll_getNext()
+void* ll_getNext()
 {
-        nodoGlobal= nodoGlobal->pNextNode;
+    void* pElemento = nodoGlobal->pElement;
+    nodoGlobal= nodoGlobal->pNextNode;
+    return pElemento;
 }
 
 

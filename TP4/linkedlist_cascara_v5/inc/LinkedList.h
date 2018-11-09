@@ -55,5 +55,5 @@ LinkedList* ll_clone(LinkedList* this);
 int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order);
 LinkedList* ll_filter (LinkedList* this , int(*pFunction)(void* pElemento));
 void ll_startIter( LinkedList* this);
-void ll_getNext();
+void* ll_getNext();
 
