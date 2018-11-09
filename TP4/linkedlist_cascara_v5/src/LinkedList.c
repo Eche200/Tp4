@@ -3,7 +3,7 @@
 #include <string.h>
 
 #include "../inc/LinkedList.h"
-
+static Node* nodoGlobal;
 
 static Node* getNode(LinkedList* this, int nodeIndex);
 static int addNode(LinkedList* this, int nodeIndex,void* pElement);
@@ -503,14 +503,11 @@ int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order)
     void* thisElementoUno;
     void* thisElementoDos;
     int retOrderValue;
-
-
     if(this != NULL &&size > 0 && pFunc != NULL && (order == 1 || order == 0))
     {
         do
         {
             flagSwap = 0;
-
             for(i=0;i<size;i++)
             {
                 thisElementoUno =ll_get(this,i);
@@ -523,40 +520,58 @@ int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order)
                         flagSwap = 1;
                         ll_set(this,i,thisElementoDos);
                         ll_set(this,i+1,thisElementoUno);
-
                     }
                 }
             }
-
-
         }while(flagSwap == 1);
-
         returnAux = 0;
     }
     return returnAux;
 }
 
-int swap (Node* auxNode,Node* auxNodeDos ,int orden)
+LinkedList* ll_filter (LinkedList* this , int(*pFunction)(void* pElemento))
 {
-    void* auxElement;
-    int retorno = -1;
-    if(auxNode != NULL  && auxNodeDos != NULL && orden >= 0 && orden <= 1)
+    LinkedList* nuevaLinkedList = NULL;
+    ll_startIter(this);
+    if(this != NULL && pFunction !=NULL)
     {
-        if(orden == 1)
+        do
         {
-            auxElement = auxNode->pElement;////SWAP
-            auxNode->pElement =auxNodeDos->pElement;
-            auxNodeDos->pElement = auxElement;
-        }else if(orden == 0)
-        {
-            auxElement = auxNodeDos->pElement;////SWAP
-            auxNodeDos->pElement = auxNode->pElement;
-            auxNode->pElement = auxElement;
-        }
-        retorno =0;
+            if(!pFunction(nodoGlobal->pElement))
+            {
+                ll_add(nuevaLinkedList , nodoGlobal);
+            }
+            ll_getNext();
+        }while(nodoGlobal->pNextNode != NULL);
     }
-    return retorno;
+    return nuevaLinkedList;
 }
+
+void ll_startIter( LinkedList* this)
+{
+
+    if(this != NULL)
+    {
+        nodoGlobal = this->pFirstNode;
+    }
+
+}
+
+void ll_getNext()
+{
+        nodoGlobal= nodoGlobal->pNextNode;
+}
+
+
+/*
+ll_startIter()
+    ll_getNext()
+
+    envez de usar ll_get hago ll_start y luego pElemento = getNext;
+
+
+
+*/
 
 
 
