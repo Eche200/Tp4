@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+//stdarg
 #include "../inc/LinkedList.h"
 static Node* nodoGlobal;
 
@@ -463,6 +463,7 @@ LinkedList* ll_subList(LinkedList* this,int from,int to)
 
 
 
+
 /** \brief Crea y retorna una nueva lista con los elementos de la lista pasada como parametro
  *
  * \param pList LinkedList* Puntero a la lista
@@ -533,31 +534,56 @@ LinkedList* ll_filter (LinkedList* this , int(*pFunction)(void* pElemento))
 {
     LinkedList* nuevaLinkedList = NULL;
     ll_startIter(this);
-    int
+
     if(this != NULL && pFunction !=NULL)
     {
         do
         {
-
-            if( !pFunction(nodoGlobal->pElement) && )
             if(!pFunction(nodoGlobal->pElement))
             {
-                ll_add(nuevaLinkedList , nodoGlobal->pElement);
+                ll_add(nuevaLinkedList , ll_getNext());
             }
-            ll_getNext();
-        }while(nodoGlobal->pNextNode != NULL);
+
+        }while(ll_getNext() != NULL);
     }
     return nuevaLinkedList;
 }
 
+
+
+int FuncionMap (LinkedList* this , int(*pFunction)(void* pElemento))
+{
+    int retorno = 0;
+    void* pElemento = NULL;
+    int resultadoDeLaFuncionAgregar;
+    if(this != NULL && pFunction != NULL )
+    {
+        ll_startIter(this);
+        do
+        {
+            pElemento = ll_getNext();
+            resultadoDeLaFuncionAgregar = pFunction(pElemento);
+            if(! resultadoDeLaFuncionAgregar)
+            {
+                retorno = 1;
+                break;
+            }
+        }while(nodoGlobal->pElement != NULL);
+    }
+    return retorno;
+
+}
+
+
+
+
+
 void ll_startIter( LinkedList* this)
 {
-
     if(this != NULL)
     {
         nodoGlobal = this->pFirstNode;
     }
-
 }
 
 void* ll_getNext()
@@ -568,15 +594,14 @@ void* ll_getNext()
 }
 
 
-/*
-ll_startIter()
-    ll_getNext()
 
-    envez de usar ll_get hago ll_start y luego pElemento = getNext;
+void prueba (LinkedList* this)
+{
+    FuncionMap(this,ll_add(this,))
+
+}
 
 
-
-*/
 
 
 
