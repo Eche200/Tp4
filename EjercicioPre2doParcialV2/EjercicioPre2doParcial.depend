@@ -1,0 +1,56 @@
+# depslib dependency file v1.0
+1542321938 source:/home/alumno/Tp4/EjercicioPre2doParcialV2/EMPLOYEE.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"EMPLOYEE.h"
+	"LinkedList.h"
+	"Parser.h"
+	"UtnValidaciones.h"
+
+1542321390 /home/alumno/Tp4/EjercicioPre2doParcialV2/EMPLOYEE.h
+	"LinkedList.h"
+
+1542319575 /home/alumno/Tp4/EjercicioPre2doParcialV2/LinkedList.h
+
+1542319575 /home/alumno/Tp4/EjercicioPre2doParcialV2/Parser.h
+	"LinkedList.h"
+
+1542321989 /home/alumno/Tp4/EjercicioPre2doParcialV2/UtnValidaciones.h
+
+1542321935 source:/home/alumno/Tp4/EjercicioPre2doParcialV2/LinkedList.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"EMPLOYEE.h"
+	"LinkedList.h"
+	"Parser.h"
+	"UtnValidaciones.h"
+
+1542325845 source:/home/alumno/Tp4/EjercicioPre2doParcialV2/Parser.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"EMPLOYEE.h"
+	"LinkedList.h"
+	"Parser.h"
+	"UtnValidaciones.h"
+
+1542322134 source:/home/alumno/Tp4/EjercicioPre2doParcialV2/UtnValidaciones.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"EMPLOYEE.h"
+	"LinkedList.h"
+	"Parser.h"
+	"UtnValidaciones.h"
+
+1542327680 source:/home/alumno/Tp4/EjercicioPre2doParcialV2/main.c
+	<stdio.h>
+	<stdlib.h>
+	"EMPLOYEE.h"
+	"LinkedList.h"
+	"Parser.h"
+	"UtnValidaciones.h"
+

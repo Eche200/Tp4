@@ -31,10 +31,10 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="Empleado.c">
+		<Unit filename="EMPLOYEE.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="Empleado.h" />
+		<Unit filename="EMPLOYEE.h" />
 		<Unit filename="LinkedList.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -43,6 +43,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Parser.h" />
+		<Unit filename="UtnValidaciones.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="UtnValidaciones.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>

@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-//stdarg
+#include "EMPLOYEE.h"
 #include "LinkedList.h"
+#include "Parser.h"
+#include "UtnValidaciones.h"
 static Node* nodoGlobal;
 
 static Node* getNode(LinkedList* this, int nodeIndex);

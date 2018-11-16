@@ -1,13 +1,41 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "EMPLOYEE.h"
 #include "LinkedList.h"
-
+#include "Parser.h"
+#include "UtnValidaciones.h"
 int parser_parseEmpleados(char* fileName, LinkedList* listaEmpleados)
 {
-
+    const char delimitante[2] = ",";
+    FILE* pFileDos;
     FILE* pFile;
-    char bufferId[1024];
-    char bufferNombre[1024];
-    char bufferHoras[1024];
+    char* bufferId;
+    char* bufferNombre;
+    char* bufferHoras;
+    char auxFile[40000];
 
+    pFile = fopen(fileName,"r");
+    pFileDos = fopen("dataDos.csv","w");
+
+
+    while( !feof(pFile) ) {
+
+        fgets(auxFile,40000,pFile);
+        bufferNombre = strtok(auxFile,delimitante);
+        bufferHoras = strtok(NULL, delimitante);
+        bufferId = strtok(NULL , delimitante);
+        fprintf(pFileDos,bufferNombre);
+        fprintf(pFileDos,bufferHoras);
+        fprintf(pFileDos,bufferId);
+
+        //printf( " %s", bufferNombre );
+        //printf( " %s\n", bufferHoras );
+    }
+
+
+    fclose(pFile);
+    fclose(pFileDos);
 
 
     return 1; // OK
