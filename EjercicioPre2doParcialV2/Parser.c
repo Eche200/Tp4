@@ -24,10 +24,15 @@ int parser_parseEmpleados(char* fileName, LinkedList* listaEmpleados)
         fgets(auxFile,40000,pFile);
         bufferNombre = strtok(auxFile,delimitante);
         bufferHoras = strtok(NULL, delimitante);
-        bufferId = strtok(NULL , delimitante);
+        bufferId = strtok(NULL , "\n");
+
+
         fprintf(pFileDos,bufferNombre);
+        fprintf(pFileDos,",");
         fprintf(pFileDos,bufferHoras);
+        fprintf(pFileDos,",");
         fprintf(pFileDos,bufferId);
+        fprintf(pFileDos,"\n");
 
         //printf( " %s", bufferNombre );
         //printf( " %s\n", bufferHoras );
